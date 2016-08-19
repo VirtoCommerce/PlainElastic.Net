@@ -80,6 +80,9 @@
     <Compile Include="Builders\Queries\Aggregations\StatsAggregation.cs" />
     <Compile Include="Builders\Queries\Aggregations\TermsAggregation.cs" />
     <Compile Include="Builders\Queries\Filters\RegExpFilter.cs" />
+    <Compile Include="Serialization\JsonNet\AggBucketCreationConverter.cs" />
+    <Compile Include="Serialization\JsonNet\AggCreationConverter.cs" />
+    <Compile Include="Serialization\Results\AggResult.cs" />
     <Compile Include="Serialization\Results\IndexAliasesResult.cs" />
     <Compile Include="Builders\Commands\SearchScrollCommand.cs" />
     <Compile Include="Builders\Commands\MoreLikeThisCommand.cs" />

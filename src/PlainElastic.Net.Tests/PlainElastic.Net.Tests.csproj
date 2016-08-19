@@ -449,6 +449,7 @@
     <Compile Include="Serialization\When_date_histogram_facets_result_deserialized.cs" />
     <Compile Include="Serialization\When_histogram_facets_result_deserialized.cs" />
     <Compile Include="Serialization\When_geo_distance_facets_result_deserialized.cs" />
+    <Compile Include="Serialization\When_terms_aggs_result_deserialized.cs" />
     <Compile Include="Serialization\When_terms_stats_facets_result_deserialized.cs" />
     <Compile Include="Serialization\When_statistical_facets_result_deserialized.cs" />
     <Compile Include="Serialization\When_failed_query_results_deserialized.cs" />
@@ -476,7 +477,9 @@
     <Compile Include="Utils\When_Format_with_null_args_called.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Builders\Queries\_Aggregations\" />
@@ -486,6 +489,9 @@
       <Project>{7881C0A1-3020-45AC-944D-36DA5AE2D734}</Project>
       <Name>PlainElastic.Net</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

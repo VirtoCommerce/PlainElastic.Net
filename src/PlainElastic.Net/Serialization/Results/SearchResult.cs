@@ -10,6 +10,7 @@ namespace PlainElastic.Net.Serialization
         public ShardsResult _shards;
         public SearchHits hits;
         public SearchFacets facets;
+        public SearchAggregations aggregations;
         public string _scroll_id;
 
         public IEnumerable<T> Documents
@@ -41,6 +42,14 @@ namespace PlainElastic.Net.Serialization
             public TFacet Facet<TFacet>(string facetName) where TFacet : FacetResult
             {
                 return this[facetName] as TFacet;
+            }
+        }
+
+        public class SearchAggregations : Dictionary<string, AggResult>
+        {
+            public TAggregation Aggregation<TAggregation>(string aggName) where TAggregation : AggResult
+            {
+                return this[aggName] as TAggregation;
             }
         }
 
