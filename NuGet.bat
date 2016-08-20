@@ -1,12 +1,14 @@
-@set DEVENV100="%programfiles(x86)%\Microsoft Visual Studio 11.0\Common7\IDE\devenv.exe"
-@if "%programfiles(x86)%"=="" (@set DEVENV100="%programfiles%\Microsoft Visual Studio 11.0\Common7\IDE\devenv.exe")
+IF NOT DEFINED ProgramFiles(x86) SET ProgramFiles(x86)=%ProgramFiles%
+IF NOT DEFINED MSBUILD_PATH IF EXIST "%ProgramFiles(x86)%\MSBuild\14.0\Bin\MSBuild.exe" SET MSBUILD_PATH=%ProgramFiles(x86)%\MSBuild\14.0\Bin\MSBuild.exe
+IF NOT DEFINED MSBUILD_PATH IF EXIST "%ProgramFiles(x86)%\MSBuild\12.0\Bin\MSBuild.exe" SET MSBUILD_PATH=%ProgramFiles(x86)%\MSBuild\12.0\Bin\MSBuild.exe
+IF NOT DEFINED MSBUILD_PATH SET MSBUILD_PATH=%WINDIR%\Microsoft.NET\Framework\v4.0.30319\msbuild.exe
 
 @set NUGET="packages\NuGet.CommandLine.2.8.3\tools\NuGet.exe"
 
 @echo ==========================
 @echo Building PlainElastic.Net.
 @rmdir src\PlainElastic.Net\bin /s /q
-%DEVENV100% /nologo /build Release "PlainElastic.Net.sln"
+%MSBUILD_PATH% "PlainElastic.Net.sln" /nologo /verbosity:m /t:Build /p:Configuration=Release;Platform="Any CPU"
 @if errorlevel 1 goto error
 
 @echo ==========================
