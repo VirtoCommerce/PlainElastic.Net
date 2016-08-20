@@ -8,7 +8,7 @@ IF NOT DEFINED MSBUILD_PATH SET MSBUILD_PATH=%WINDIR%\Microsoft.NET\Framework\v4
 @echo ==========================
 @echo Building PlainElastic.Net.
 @rmdir src\PlainElastic.Net\bin /s /q
-%MSBUILD_PATH% "PlainElastic.Net.sln" /nologo /verbosity:m /t:Build /p:Configuration=Release;Platform="Any CPU"
+"%MSBUILD_PATH%" "PlainElastic.Net.sln" /nologo /verbosity:m /t:Build /p:Configuration=Release;Platform="Any CPU"
 @if errorlevel 1 goto error
 
 @echo ==========================
