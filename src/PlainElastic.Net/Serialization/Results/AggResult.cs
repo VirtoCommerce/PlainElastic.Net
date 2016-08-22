@@ -11,20 +11,6 @@ namespace PlainElastic.Net.Serialization
         }
     }
 
-    public class KeyedBucketAggregationResult : AggResult
-    {
-        public Dictionary<string, RangeBucket> buckets;
-
-        public class RangeBucket
-        {
-            public int doc_count;
-            public string from;
-            public string to;
-            public string from_as_string;
-            public string to_as_string;
-        }
-    }
-
     public class BucketAggregationResult: AggResult
     {
         public List<Bucket> buckets;
@@ -37,10 +23,6 @@ namespace PlainElastic.Net.Serialization
             public string to_as_string;
         }
 
-        public class FilterBucket : Bucket
-        {
-        }
-
         public class KeyedBucket : Bucket
         {
             public string key;
@@ -49,6 +31,25 @@ namespace PlainElastic.Net.Serialization
         public class Bucket
         {
             public int doc_count;
+        }
+    }
+
+    public class SingleAggregationResult : AggResult
+    {
+        public int doc_count;
+    }
+
+    public class KeyedBucketAggregationResult : AggResult
+    {
+        public Dictionary<string, RangeBucket> buckets;
+
+        public class RangeBucket
+        {
+            public int doc_count;
+            public string from;
+            public string to;
+            public string from_as_string;
+            public string to_as_string;
         }
     }
 }

@@ -40,7 +40,7 @@ namespace PlainElastic.Net.Serialization
                 return null;
 
             var buckets = json.Property("buckets");
-            if(buckets.Value is JObject)
+            if(buckets != null && buckets.Value is JObject)
             {
                 return new KeyedBucketAggregationResult();
             }
@@ -50,6 +50,8 @@ namespace PlainElastic.Net.Serialization
             {
                 case "doc_count_error_upper_bound":
                     return new BucketAggregationResult();
+                case "doc_count":
+                    return new SingleAggregationResult();
             }
 
             return new AggResult();

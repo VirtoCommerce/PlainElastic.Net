@@ -449,6 +449,8 @@
     <Compile Include="Serialization\When_date_histogram_facets_result_deserialized.cs" />
     <Compile Include="Serialization\When_histogram_facets_result_deserialized.cs" />
     <Compile Include="Serialization\When_geo_distance_facets_result_deserialized.cs" />
+    <Compile Include="Serialization\When_single_aggs_result_deserialized.cs" />
+    <Compile Include="Serialization\When_range_aggs_result_deserialized.cs" />
     <Compile Include="Serialization\When_terms_aggs_result_deserialized.cs" />
     <Compile Include="Serialization\When_terms_stats_facets_result_deserialized.cs" />
     <Compile Include="Serialization\When_statistical_facets_result_deserialized.cs" />

@@ -42,23 +42,6 @@ namespace PlainElastic.Net.Tests.Serialization
                     'doc_count' : 30
                 },
             ]
-        },
-        'TestTerms2' : {
-            'buckets': {
-                '*-50.0': {
-                    'to': 50,
-                    'doc_count': 2
-                },
-                '50.0-100.0': {
-                    'from': 50,
-                    'to': 100,
-                    'doc_count': 4
-                },
-                '100.0-*': {
-                    'from': 100,
-                    'doc_count': 4
-                }
-            }
         }
     }
 }".AltQuote();
@@ -101,11 +84,20 @@ namespace PlainElastic.Net.Tests.Serialization
     }
 
 
-    public static class TermsAggsComparator
+    public static class BucketAggsComparator
     {
         public static bool ShouldBeSameAs(this IEnumerable<BucketAggregationResult.Bucket> buckets, BucketAggregationResult.Bucket[] expectedBuckets)
         {
-            return buckets.Select((bucket, i) => ((BucketAggregationResult.KeyedBucket)bucket).key == ((BucketAggregationResult.KeyedBucket)expectedBuckets[i]).key && bucket.doc_count == expectedBuckets[i].doc_count).All(b => b);
+            if (buckets.ElementAt(0) is BucketAggregationResult.KeyedBucket)
+            {
+                return buckets.Select((bucket, i) => ((BucketAggregationResult.KeyedBucket)bucket).key == ((BucketAggregationResult.KeyedBucket)expectedBuckets[i]).key && bucket.doc_count == expectedBuckets[i].doc_count).All(b => b);
+            }
+            else if (buckets.ElementAt(0) is BucketAggregationResult.RangeBucket)
+            {
+                return buckets.Select((bucket, i) => bucket.doc_count == expectedBuckets[i].doc_count).All(b => b);
+            }
+            else
+                return buckets.Select((bucket, i) => bucket.doc_count == expectedBuckets[i].doc_count).All(b => b);
         }
     }
 }

@@ -48,7 +48,7 @@ namespace PlainElastic.Net.Serialization
                 case "from":
                     return new BucketAggregationResult.RangeBucket();
                 case "doc_count":
-                    return new BucketAggregationResult.FilterBucket();
+                    return new BucketAggregationResult.Bucket();
             }
 
             return new BucketAggregationResult.Bucket();
